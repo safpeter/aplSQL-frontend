@@ -18,7 +18,7 @@ export default new Vuex.Store({
       axios({
         method : 'post',
         url:  `https://aplsql.herokuapp.com/${query.route}`,
-        data : query.queryString ,
+        data : {queryString : query.queryString} ,
         headers : {
           "Content-Type" :  "application/json"
         }
