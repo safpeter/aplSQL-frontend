@@ -17,6 +17,15 @@
           </v-col>
         </v-row>
       </v-form>
+       <v-dialog v-model="modal" max-width="400">
+              <v-card>
+                <v-card-title wrap>Invalid Query!</v-card-title>
+                <v-card-text wrap>Try to start your query with:
+                    select,create,insert,delete !</v-card-text>
+                <v-card-actions>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
     </v-container>
   </div>
 </template>
@@ -24,12 +33,22 @@
 <script>
 export default {
     data: () => ({
-       query : ""
+       query : "",
+       queryType: ["select", "create", "insert", "update","delete"],
+       modal : false
     }),
     methods: {
         sendQuery(){
-            this.$store.dispatch("sendQuery", this.query)
-            console.log(this.query)
+            const firstCommand = this.query.split(" ")[0].toLowerCase();
+            if (this.query &&  this.queryType.includes(firstCommand) ){
+            this.$store.dispatch("sendQuery", {
+                query : this.query,
+                route : this.query.split(" ")[0]})
+            } else{
+                this.modal = true;
+            }
+
+
         }
     }
 };
