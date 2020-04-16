@@ -43,7 +43,7 @@ export default {
             if (this.query &&  this.queryType.includes(firstCommand) ){
             this.$store.dispatch("sendQuery", {
                 query : this.query,
-                route : this.query.split(" ")[0]})
+                route : firstCommand})
             } else{
                 this.modal = true;
             }
