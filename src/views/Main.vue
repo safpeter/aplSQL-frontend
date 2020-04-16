@@ -39,6 +39,7 @@ export default {
     }),
     methods: {
         sendQuery(){
+            console.log(this.query)
             const firstCommand = (this.query.split(" ")[0]).toLowerCase();
             if (this.query &&  this.queryType.includes(firstCommand) ){
             this.$store.dispatch("sendQuery", {
