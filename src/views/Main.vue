@@ -39,11 +39,13 @@ export default {
     }),
     methods: {
         sendQuery(){
-            console.log(this.query)
+            const data = new FormData();
+            data.set("queryString", this.query);
+            console.log(data);
             const firstCommand = (this.query.split(" ")[0]).toLowerCase();
             if (this.query &&  this.queryType.includes(firstCommand) ){
             this.$store.dispatch("sendQuery", {
-                queryString : this.query,
+                queryString : data,
                 route : firstCommand})
             } else{
                 this.modal = true;
