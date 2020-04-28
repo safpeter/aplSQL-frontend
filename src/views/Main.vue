@@ -52,12 +52,12 @@ export default {
         //     }
         // },
          sendQuery(){
-            const data = {queryString : this.query};
-            console.log(data);
+           // const data = {queryString : this.query};
+          // console.log(data);
             const firstCommand = (this.query.split(" ")[0]).toLowerCase();
             if (this.query &&  this.queryType.includes(firstCommand) ){
             this.$store.dispatch("sendQuery", {
-                queryString : data,
+                queryString : this.query,
                 route : firstCommand})
             } else{
                 this.modal = true;
