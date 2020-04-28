@@ -38,9 +38,21 @@ export default {
        modal : false
     }),
     methods: {
-        sendQuery(){
-            const data = new FormData();
-            data.set("queryString", this.query);
+        // sendQuery(){
+        //     const data = new FormData();
+        //     data.set("queryString", this.query);
+        //     console.log(data);
+        //     const firstCommand = (this.query.split(" ")[0]).toLowerCase();
+        //     if (this.query &&  this.queryType.includes(firstCommand) ){
+        //     this.$store.dispatch("sendQuery", {
+        //         queryString : data,
+        //         route : firstCommand})
+        //     } else{
+        //         this.modal = true;
+        //     }
+        // },
+         sendQuery(){
+            const data = {queryString : this.query};
             console.log(data);
             const firstCommand = (this.query.split(" ")[0]).toLowerCase();
             if (this.query &&  this.queryType.includes(firstCommand) ){
@@ -50,9 +62,8 @@ export default {
             } else{
                 this.modal = true;
             }
+        },
 
-
-        }
     }
 };
 </script>

@@ -18,11 +18,12 @@ export default new Vuex.Store({
       axios({
         method : 'post',
         url:  `https://aplsql.herokuapp.com/${query.route}`,
-        data : {queryString : query.queryString} ,
+        data :  {queryString : query.queryString} ,
         headers : {
-          "Content-Type" :  "application/json"
+          "Content-Type" :  "application/json",
+          'Access-Control-Allow-Origin': '*'
         }
-    }).then(response => context.commit("setQueryResult",response.data))
+    })
   },
   },
   modules: {
