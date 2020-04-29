@@ -7,10 +7,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     queryResult : [],
+    isWorking : ""
   },
   mutations: {
     setQueryResult(state, result){
       state.queryResult = result;
+    },
+    setIsWorking(state, result){
+      state.isWorking = result;
     }
   },
   actions: {
@@ -25,6 +29,16 @@ export default new Vuex.Store({
         }
     })
   },
+  isWorking(context){
+    axios({
+      method : 'GET',
+      url:  `https://aplsql.herokuapp.com/isworking}`,
+      headers : {
+        "Content-Type" :  "application/json",
+        'Access-Control-Allow-Origin': '*'
+      }
+  }).then(response => (context.commit("setIsWorking", response.data)))
+  }
   },
   modules: {
   }
