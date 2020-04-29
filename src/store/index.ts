@@ -14,7 +14,7 @@ export default new Vuex.Store({
       state.queryResult = result;
     },
     setIsWorking(state, result){
-      state.isWorking = result;
+      sessionStorage.setItem("status" ,result)
     }
   },
   actions: {

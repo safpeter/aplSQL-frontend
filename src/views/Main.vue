@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-container getIsWorking()>
-      <v-row class="status-ok" v-if="isWorking === true">
+    <v-container>
+      <v-row class="status-ok" v-if="this.serverStatus === true">
         <v-col>
           <v-icon id="icon-ok">mdi-server-network</v-icon>
         </v-col>
@@ -49,15 +49,10 @@ export default {
     query: "",
     queryType: ["select", "create", "insert", "update", "delete"],
     modal: false,
-    serverStatus:false
+    serverStatus:this.sessionStorage.getItem("status")
   }),
   created() {
     this.$store.dispatch("isWorking");
-  },
-  computed: {
-    getIsWorking() {
-      return this.$state.isWorking;
-    }
   },
   methods: {
     sendQuery() {
