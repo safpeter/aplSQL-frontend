@@ -150,6 +150,7 @@ export default {
 }
 
 #table {
+  margin-top: 5%;
   display: none;
   border-color: darkred !important;
   border:groove !important;
