@@ -98,11 +98,18 @@ export default {
       const firstCommand = this.query.split(" ")[0].toLowerCase();
     if (this.query && this.queryTypes.includes(firstCommand)) {
       const promise = new Promise((resolve) => {
+      if (firstCommand == 'delete'){
+          resolve(this.$store.dispatch("sendDeleteQuery", {
+          queryString: this.query,
+          route: firstCommand,
+      })
+        )
+      } else {
       resolve(this.$store.dispatch("sendQuery", {
           queryString: this.query,
           route: firstCommand,
       })
-        )})
+        )}})
         promise.then(setTimeout(() => {this.results = this.$store.state.queryResult.data,
         this.query = '' }, 1000))
         .then(setTimeout(() => {

@@ -25,6 +25,17 @@ export default new Vuex.Store({
         }
     }).then(response => context.commit("setQuery",response))
   },
+  sendDeleteQuery(context, query){
+    axios({
+      method : "delete",
+      url:  `https://aplsql.herokuapp.com/${query.route}`,
+      data :  {queryString : query.queryString} ,
+      headers : {
+        "Content-Type" :  "application/json",
+        'Access-Control-Allow-Origin': '*'
+      }
+  }).then(response => context.commit("setQuery",response))
+},
   },
   modules: {
   }
