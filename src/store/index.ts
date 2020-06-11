@@ -6,39 +6,26 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    queryResult : [],
-    isWorking : ""
+    queryResult : "",
   },
   mutations: {
-    setQueryResult(state, result){
+    setQuery(state, result){
       state.queryResult = result;
     },
-    setIsWorking(state, result){
-      sessionStorage.setItem("status" ,result)
-    }
   },
   actions: {
     sendQuery(context, query){
       axios({
-        method : 'post',
-        url:  `https://aplsql.herokuapp.com/${query.route}`,
+        method : "post",
+        url : `http://localhost:8080/${query.route}`,
+        //url:  `https://aplsql.herokuapp.com/${query.route}`,
         data :  {queryString : query.queryString} ,
         headers : {
           "Content-Type" :  "application/json",
           'Access-Control-Allow-Origin': '*'
         }
-    })
+    }).then(response => context.commit("setQuery",response))
   },
-  isWorking(context){
-    axios({
-      method : 'GET',
-      url:  `https://aplsql.herokuapp.com/isworking}`,
-      headers : {
-        "Content-Type" :  "application/json",
-        'Access-Control-Allow-Origin': '*'
-      }
-  }).then(response => (context.commit("setIsWorking", response.data)))
-  }
   },
   modules: {
   }
